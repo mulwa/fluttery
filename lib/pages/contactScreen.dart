@@ -1,5 +1,6 @@
 import 'package:contact_manager/Bloc/contactManager.dart';
 import 'package:contact_manager/model/contactModel.dart';
+import 'package:contact_manager/pages/widgets/contactSearchDelegate.dart';
 import 'package:contact_manager/pages/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -21,18 +22,19 @@ class ContactsScreen extends StatelessWidget {
                 }),
             backgroundColor: Colors.red,
           ),
-
-          IconButton(icon: Icon(Icons.search), onPressed: (){
-            print('Searching');
-          }),
-
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(context: context, delegate: ContactSearchDelegate(contactManager: contactManager));
+              }),
           Padding(padding: EdgeInsets.only(right: 16))
         ],
       ),
       drawer: AppDrawer(),
       body: StreamBuilder<List<Contact>>(
           stream: contactManager.contactListNow,
-          builder:(BuildContext context, AsyncSnapshot<List<Contact>> snapshot) {
+          builder:
+              (BuildContext context, AsyncSnapshot<List<Contact>> snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
               case ConnectionState.waiting:
