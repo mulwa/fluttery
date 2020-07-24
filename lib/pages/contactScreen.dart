@@ -1,25 +1,22 @@
 import 'package:contact_manager/Bloc/contactManager.dart';
+import 'package:contact_manager/Bloc/provider.dart';
 import 'package:contact_manager/model/contactModel.dart';
+import 'package:contact_manager/pages/widgets/contactCounter.dart';
 import 'package:contact_manager/pages/widgets/contactSearchDelegate.dart';
 import 'package:contact_manager/pages/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class ContactsScreen extends StatelessWidget {
-  ContactManager contactManager = ContactManager();
+  // ContactManager contactManager = ContactManager();
   @override
   Widget build(BuildContext context) {
+    ContactManager contactManager = ContactProvider.of(context).data;
     return Scaffold(
       appBar: AppBar(
         title: Text("Contacts"),
         actions: <Widget>[
           Chip(
-            label: StreamBuilder<int>(
-                stream: contactManager.contactCount,
-                builder: (context, snapshot) {
-                  return Text((snapshot.data ?? '0').toString(),
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold));
-                }),
+            label: ContactCounter(),
             backgroundColor: Colors.red,
           ),
           IconButton(

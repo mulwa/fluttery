@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:contact_manager/model/contactModel.dart';
 import 'package:contact_manager/services/contactService.dart';
+import 'package:rxdart/rxdart.dart';
 
 List<String> CONTACTS = ["User One", "User Two","User thre3", "User4"];
 class ContactManager {
@@ -14,7 +15,7 @@ class ContactManager {
 
   } 
   
-  final StreamController<int> _contactsStream = StreamController<int>();
+  final BehaviorSubject<int> _contactsStream = BehaviorSubject<int>();
   Stream<int> get contactCount => _contactsStream.stream;
 
   ContactManager(){
