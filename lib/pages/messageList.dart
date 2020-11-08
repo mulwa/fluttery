@@ -37,35 +37,33 @@ class _MessageListState extends State<MessageList> {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView.separated(
-          itemCount: messages.length,
-          separatorBuilder: (context, index) => Divider(),
-          itemBuilder: (BuildContext context, int index) {
-            Message message = this.messages[index];
-            return ListTile(
-              isThreeLine: true,
-              title: Text(message.subject),
-              leading: CircleAvatar(
-                child: Text('PH'),
-              ),
-              subtitle: Text(
-                message.body,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => MessageDetail(
-                              title: message.subject,
-                              body: message.body,
-                            )));
-              },
-            );
-          });
-      // floatingActionButton: ComposeButton(),
-      
-    
+    return ListView.separated(
+        itemCount: messages.length,
+        separatorBuilder: (context, index) => Divider(),
+        itemBuilder: (BuildContext context, int index) {
+          Message message = this.messages[index];
+          return ListTile(
+            isThreeLine: true,
+            title: Text(message.subject),
+            leading: CircleAvatar(
+              child: Text('PH'),
+            ),
+            subtitle: Text(
+              message.body,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => MessageDetail(
+                            title: message.subject,
+                            body: message.body,
+                          )));
+            },
+          );
+        });
+    // floatingActionButton: ComposeButton(),
   }
 }
